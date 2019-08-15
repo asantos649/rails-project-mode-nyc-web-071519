@@ -1,0 +1,7 @@
+<h1><%= @band.name.titleize %></h1>
+
+<ul>
+<% @band.concerts.each do |concert| %>
+<li><%= link_to concert.name, concert_path(concert) %></li>
+<% end %>
+</ul>

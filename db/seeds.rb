@@ -16,6 +16,7 @@ user2 = User.create(name: "Amanda Hugenkiss", email: "amandahugenkiss@gmail.com"
 
 band1 = Band.create(name: "The Beatles")
 band2 = Band.create(name: "Elvis Presley")
+band3 = Band.create(name: "Nickelback")
 
 concert1 = Concert.create(date_and_time: Time.now, name: "The Beatles: Back from the Dead", location: "New York City")
 concert2 = Concert.create(date_and_time: Time.now, name: "Elvis Presley: Back from the Dead 2: Electric Boogaloo", location: "Los Angeles")
@@ -25,3 +26,5 @@ user_concert2 = UserConcert.create(user: user2, concert: concert2)
 
 performance1 = Performance.create(band: band1, concert: concert1, opener: false)
 performance2 = Performance.create(band: band2, concert: concert2, opener: false)
+performance3 = Performance.create(band: band1, concert: concert2, opener: false)
+performance3 = Performance.create(band: band3, concert: concert2, opener: false)

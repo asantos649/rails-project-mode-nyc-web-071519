@@ -906,3 +906,451 @@ FOREIGN KEY ("concert_id")
   [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
   ↳ db/seeds.rb:27
   [1m[36mUserConcert Load (0.7ms)[0m  [1m[34mSELECT  "user_concerts".* FROM "user_concerts" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mConcert Load (0.9ms)[0m  [1m[34mSELECT  "concerts".* FROM "concerts" ORDER BY "concerts"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mConcert Load (0.3ms)[0m  [1m[34mSELECT  "concerts".* FROM "concerts" ORDER BY "concerts"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mPerformance Load (0.7ms)[0m  [1m[34mSELECT "performances".* FROM "performances" WHERE "performances"."concert_id" = ? AND "performances"."opener" = ?[0m  [["concert_id", 1], ["opener", 0]]
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUserConcerts (20190815182743)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (2.3ms)[0m  [1m[35mDROP TABLE "user_concerts"[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.6ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20190815182743"]]
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUserConcerts (20190815182743)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/migrate/20190815182743_create_user_concerts.rb:3
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "user_concerts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "concert_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_e2534684f5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_eda28db655"
+FOREIGN KEY ("concert_id")
+  REFERENCES "concerts" ("id")
+)[0m
+  ↳ db/migrate/20190815182743_create_user_concerts.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_user_concerts_on_user_id" ON "user_concerts" ("user_id")[0m
+  ↳ db/migrate/20190815182743_create_user_concerts.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_user_concerts_on_concert_id" ON "user_concerts" ("concert_id")[0m
+  ↳ db/migrate/20190815182743_create_user_concerts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190815182743"]]
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mUserConcert Load (0.1ms)[0m  [1m[34mSELECT "user_concerts".* FROM "user_concerts"[0m
+  ↳ db/seeds.rb:8
+  [1m[36mPerformance Load (0.1ms)[0m  [1m[34mSELECT "performances".* FROM "performances"[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[36mPerformance Destroy (0.4ms)[0m  [1m[31mDELETE FROM "performances" WHERE "performances"."id" = ?[0m  [["id", 1]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[36mPerformance Destroy (0.3ms)[0m  [1m[31mDELETE FROM "performances" WHERE "performances"."id" = ?[0m  [["id", 2]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 1]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 2]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mBand Load (0.2ms)[0m  [1m[34mSELECT "bands".* FROM "bands"[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mBand Destroy (0.3ms)[0m  [1m[31mDELETE FROM "bands" WHERE "bands"."id" = ?[0m  [["id", 1]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mBand Destroy (0.2ms)[0m  [1m[31mDELETE FROM "bands" WHERE "bands"."id" = ?[0m  [["id", 2]]
+  ↳ db/seeds.rb:11
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mConcert Load (0.2ms)[0m  [1m[34mSELECT "concerts".* FROM "concerts"[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[36mConcert Destroy (0.3ms)[0m  [1m[31mDELETE FROM "concerts" WHERE "concerts"."id" = ?[0m  [["id", 1]]
+  ↳ db/seeds.rb:12
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[36mConcert Destroy (0.2ms)[0m  [1m[31mDELETE FROM "concerts" WHERE "concerts"."id" = ?[0m  [["id", 2]]
+  ↳ db/seeds.rb:12
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Bruce Jr."], ["email", "bruce@jr.com"], ["created_at", "2019-08-15 20:11:09.079020"], ["updated_at", "2019-08-15 20:11:09.079020"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:15
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Amanda Hugenkiss"], ["email", "amandahugenkiss@gmail.com"], ["created_at", "2019-08-15 20:11:09.081920"], ["updated_at", "2019-08-15 20:11:09.081920"]]
+  ↳ db/seeds.rb:15
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:15
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mBand Create (0.3ms)[0m  [1m[32mINSERT INTO "bands" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "The Beatles"], ["created_at", "2019-08-15 20:11:09.085333"], ["updated_at", "2019-08-15 20:11:09.085333"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:18
+  [1m[36mBand Create (0.2ms)[0m  [1m[32mINSERT INTO "bands" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Elvis Presley"], ["created_at", "2019-08-15 20:11:09.088377"], ["updated_at", "2019-08-15 20:11:09.088377"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:20
+  [1m[36mConcert Create (0.6ms)[0m  [1m[32mINSERT INTO "concerts" ("date_and_time", "name", "location", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_and_time", "2019-08-15 20:11:09.090576"], ["name", "The Beatles: Back from the Dead"], ["location", "New York City"], ["created_at", "2019-08-15 20:11:09.143091"], ["updated_at", "2019-08-15 20:11:09.143091"]]
+  ↳ db/seeds.rb:20
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:20
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:21
+  [1m[36mConcert Create (0.6ms)[0m  [1m[32mINSERT INTO "concerts" ("date_and_time", "name", "location", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_and_time", "2019-08-15 20:11:09.147427"], ["name", "Elvis Presley: Back from the Dead 2: Electric Boogaloo"], ["location", "Los Angeles"], ["created_at", "2019-08-15 20:11:09.148532"], ["updated_at", "2019-08-15 20:11:09.148532"]]
+  ↳ db/seeds.rb:21
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:21
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:23
+  [1m[36mUserConcert Create (0.4ms)[0m  [1m[32mINSERT INTO "user_concerts" ("user_id", "concert_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 3], ["concert_id", 3], ["created_at", "2019-08-15 20:11:09.162442"], ["updated_at", "2019-08-15 20:11:09.162442"]]
+  ↳ db/seeds.rb:23
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUserConcert Create (0.4ms)[0m  [1m[32mINSERT INTO "user_concerts" ("user_id", "concert_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 4], ["concert_id", 4], ["created_at", "2019-08-15 20:11:09.165295"], ["updated_at", "2019-08-15 20:11:09.165295"]]
+  ↳ db/seeds.rb:24
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:26
+  [1m[36mPerformance Create (0.3ms)[0m  [1m[32mINSERT INTO "performances" ("concert_id", "band_id", "opener", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["concert_id", 3], ["band_id", 3], ["opener", 0], ["created_at", "2019-08-15 20:11:09.168903"], ["updated_at", "2019-08-15 20:11:09.168903"]]
+  ↳ db/seeds.rb:26
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:26
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:27
+  [1m[36mPerformance Create (0.4ms)[0m  [1m[32mINSERT INTO "performances" ("concert_id", "band_id", "opener", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["concert_id", 4], ["band_id", 4], ["opener", 0], ["created_at", "2019-08-15 20:11:09.171611"], ["updated_at", "2019-08-15 20:11:09.171611"]]
+  ↳ db/seeds.rb:27
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:27
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mPerformance Create (0.4ms)[0m  [1m[32mINSERT INTO "performances" ("concert_id", "band_id", "opener", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["concert_id", 4], ["band_id", 3], ["opener", 0], ["created_at", "2019-08-15 20:11:09.174314"], ["updated_at", "2019-08-15 20:11:09.174314"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mConcert Load (0.1ms)[0m  [1m[34mSELECT  "concerts".* FROM "concerts" ORDER BY "concerts"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mPerformance Load (0.1ms)[0m  [1m[34mSELECT "performances".* FROM "performances" WHERE "performances"."concert_id" = ? AND "performances"."opener" = ?[0m  [["concert_id", 4], ["opener", 0]]
+  [1m[36mBand Load (0.3ms)[0m  [1m[34mSELECT  "bands".* FROM "bands" INNER JOIN "performances" ON "bands"."id" = "performances"."band_id" WHERE "performances"."concert_id" = ? ORDER BY "bands"."id" ASC LIMIT ?[0m  [["concert_id", 4], ["LIMIT", 1]]
+  [1m[36mBand Load (0.2ms)[0m  [1m[34mSELECT  "bands".* FROM "bands" INNER JOIN "performances" ON "bands"."id" = "performances"."band_id" WHERE "performances"."concert_id" = ? ORDER BY "bands"."id" ASC LIMIT ? OFFSET ?[0m  [["concert_id", 4], ["LIMIT", 1], ["OFFSET", 1]]
+  [1m[36mConcert Load (0.1ms)[0m  [1m[34mSELECT  "concerts".* FROM "concerts" ORDER BY "concerts"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mPerformance Load (0.2ms)[0m  [1m[34mSELECT "performances".* FROM "performances" WHERE "performances"."concert_id" = ? AND "performances"."opener" = ?[0m  [["concert_id", 4], ["opener", 0]]
+  [1m[36mBand Load (0.3ms)[0m  [1m[34mSELECT  "bands".* FROM "bands" INNER JOIN "performances" ON "bands"."id" = "performances"."band_id" WHERE "performances"."concert_id" = ? ORDER BY "bands"."id" ASC LIMIT ?[0m  [["concert_id", 4], ["LIMIT", 1]]
+  [1m[36mBand Load (0.4ms)[0m  [1m[34mSELECT  "bands".* FROM "bands" INNER JOIN "performances" ON "bands"."id" = "performances"."band_id" WHERE "performances"."concert_id" = ? ORDER BY "bands"."id" ASC LIMIT ? OFFSET ?[0m  [["concert_id", 4], ["LIMIT", 1], ["OFFSET", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mUserConcert Load (0.1ms)[0m  [1m[34mSELECT "user_concerts".* FROM "user_concerts"[0m
+  ↳ db/seeds.rb:8
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:8
+  [1m[36mUserConcert Destroy (0.4ms)[0m  [1m[31mDELETE FROM "user_concerts" WHERE "user_concerts"."id" = ?[0m  [["id", 1]]
+  ↳ db/seeds.rb:8
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:8
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:8
+  [1m[36mUserConcert Destroy (0.7ms)[0m  [1m[31mDELETE FROM "user_concerts" WHERE "user_concerts"."id" = ?[0m  [["id", 2]]
+  ↳ db/seeds.rb:8
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:8
+  [1m[36mPerformance Load (0.3ms)[0m  [1m[34mSELECT "performances".* FROM "performances"[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[36mPerformance Destroy (0.4ms)[0m  [1m[31mDELETE FROM "performances" WHERE "performances"."id" = ?[0m  [["id", 3]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[36mPerformance Destroy (0.3ms)[0m  [1m[31mDELETE FROM "performances" WHERE "performances"."id" = ?[0m  [["id", 4]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[36mPerformance Destroy (0.3ms)[0m  [1m[31mDELETE FROM "performances" WHERE "performances"."id" = ?[0m  [["id", 5]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 3]]
+  ↳ db/seeds.rb:10
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 4]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mBand Load (0.1ms)[0m  [1m[34mSELECT "bands".* FROM "bands"[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mBand Destroy (0.3ms)[0m  [1m[31mDELETE FROM "bands" WHERE "bands"."id" = ?[0m  [["id", 3]]
+  ↳ db/seeds.rb:11
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mBand Destroy (0.3ms)[0m  [1m[31mDELETE FROM "bands" WHERE "bands"."id" = ?[0m  [["id", 4]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mConcert Load (0.2ms)[0m  [1m[34mSELECT "concerts".* FROM "concerts"[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[36mConcert Destroy (0.3ms)[0m  [1m[31mDELETE FROM "concerts" WHERE "concerts"."id" = ?[0m  [["id", 3]]
+  ↳ db/seeds.rb:12
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[36mConcert Destroy (0.3ms)[0m  [1m[31mDELETE FROM "concerts" WHERE "concerts"."id" = ?[0m  [["id", 4]]
+  ↳ db/seeds.rb:12
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Bruce Jr."], ["email", "bruce@jr.com"], ["created_at", "2019-08-15 20:13:21.522704"], ["updated_at", "2019-08-15 20:13:21.522704"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:15
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Amanda Hugenkiss"], ["email", "amandahugenkiss@gmail.com"], ["created_at", "2019-08-15 20:13:21.525573"], ["updated_at", "2019-08-15 20:13:21.525573"]]
+  ↳ db/seeds.rb:15
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:15
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mBand Create (0.3ms)[0m  [1m[32mINSERT INTO "bands" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "The Beatles"], ["created_at", "2019-08-15 20:13:21.528499"], ["updated_at", "2019-08-15 20:13:21.528499"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:18
+  [1m[36mBand Create (0.3ms)[0m  [1m[32mINSERT INTO "bands" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Elvis Presley"], ["created_at", "2019-08-15 20:13:21.532026"], ["updated_at", "2019-08-15 20:13:21.532026"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:19
+  [1m[36mBand Create (0.3ms)[0m  [1m[32mINSERT INTO "bands" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Nickelback"], ["created_at", "2019-08-15 20:13:21.534716"], ["updated_at", "2019-08-15 20:13:21.534716"]]
+  ↳ db/seeds.rb:19
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:19
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:21
+  [1m[36mConcert Create (0.5ms)[0m  [1m[32mINSERT INTO "concerts" ("date_and_time", "name", "location", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_and_time", "2019-08-15 20:13:21.584935"], ["name", "The Beatles: Back from the Dead"], ["location", "New York City"], ["created_at", "2019-08-15 20:13:21.586764"], ["updated_at", "2019-08-15 20:13:21.586764"]]
+  ↳ db/seeds.rb:21
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:21
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:22
+  [1m[36mConcert Create (0.5ms)[0m  [1m[32mINSERT INTO "concerts" ("date_and_time", "name", "location", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_and_time", "2019-08-15 20:13:21.590807"], ["name", "Elvis Presley: Back from the Dead 2: Electric Boogaloo"], ["location", "Los Angeles"], ["created_at", "2019-08-15 20:13:21.591604"], ["updated_at", "2019-08-15 20:13:21.591604"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUserConcert Create (0.4ms)[0m  [1m[32mINSERT INTO "user_concerts" ("user_id", "concert_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 5], ["concert_id", 5], ["created_at", "2019-08-15 20:13:21.599988"], ["updated_at", "2019-08-15 20:13:21.599988"]]
+  ↳ db/seeds.rb:24
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:25
+  [1m[36mUserConcert Create (0.3ms)[0m  [1m[32mINSERT INTO "user_concerts" ("user_id", "concert_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 6], ["concert_id", 6], ["created_at", "2019-08-15 20:13:21.602592"], ["updated_at", "2019-08-15 20:13:21.602592"]]
+  ↳ db/seeds.rb:25
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:25
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:27
+  [1m[36mPerformance Create (0.4ms)[0m  [1m[32mINSERT INTO "performances" ("concert_id", "band_id", "opener", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["concert_id", 5], ["band_id", 5], ["opener", 0], ["created_at", "2019-08-15 20:13:21.606533"], ["updated_at", "2019-08-15 20:13:21.606533"]]
+  ↳ db/seeds.rb:27
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:27
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mPerformance Create (0.4ms)[0m  [1m[32mINSERT INTO "performances" ("concert_id", "band_id", "opener", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["concert_id", 6], ["band_id", 6], ["opener", 0], ["created_at", "2019-08-15 20:13:21.609348"], ["updated_at", "2019-08-15 20:13:21.609348"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:29
+  [1m[36mPerformance Create (0.4ms)[0m  [1m[32mINSERT INTO "performances" ("concert_id", "band_id", "opener", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["concert_id", 6], ["band_id", 5], ["opener", 0], ["created_at", "2019-08-15 20:13:21.612156"], ["updated_at", "2019-08-15 20:13:21.612156"]]
+  ↳ db/seeds.rb:29
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:29
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:30
+  [1m[36mPerformance Create (0.4ms)[0m  [1m[32mINSERT INTO "performances" ("concert_id", "band_id", "opener", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["concert_id", 6], ["band_id", 7], ["opener", 0], ["created_at", "2019-08-15 20:13:21.615091"], ["updated_at", "2019-08-15 20:13:21.615091"]]
+  ↳ db/seeds.rb:30
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:30
+  [1m[36mConcert Load (0.1ms)[0m  [1m[34mSELECT  "concerts".* FROM "concerts" ORDER BY "concerts"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mPerformance Load (0.1ms)[0m  [1m[34mSELECT "performances".* FROM "performances" WHERE "performances"."concert_id" = ? AND "performances"."opener" = ?[0m  [["concert_id", 6], ["opener", 0]]
+  [1m[36mBand Load (0.2ms)[0m  [1m[34mSELECT "bands".* FROM "bands" INNER JOIN "performances" ON "bands"."id" = "performances"."band_id" WHERE "performances"."concert_id" = ?[0m  [["concert_id", 6]]
+  [1m[36mConcert Load (0.2ms)[0m  [1m[34mSELECT  "concerts".* FROM "concerts" ORDER BY "concerts"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mBand Load (0.2ms)[0m  [1m[34mSELECT  "bands".* FROM "bands" INNER JOIN "performances" ON "bands"."id" = "performances"."band_id" WHERE "performances"."concert_id" = ? LIMIT ?[0m  [["concert_id", 6], ["LIMIT", 11]]
+  [1m[36mConcert Load (0.2ms)[0m  [1m[34mSELECT  "concerts".* FROM "concerts" ORDER BY "concerts"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mBand Load (0.2ms)[0m  [1m[34mSELECT  "bands".* FROM "bands" INNER JOIN "performances" ON "bands"."id" = "performances"."band_id" WHERE "performances"."concert_id" = ? LIMIT ?[0m  [["concert_id", 6], ["LIMIT", 11]]
+  [1m[36mBand Load (0.4ms)[0m  [1m[34mSELECT "bands".* FROM "bands" INNER JOIN "performances" ON "bands"."id" = "performances"."band_id" WHERE "performances"."concert_id" = ?[0m  [["concert_id", 6]]
+  [1m[36mConcert Load (0.4ms)[0m  [1m[34mSELECT  "concerts".* FROM "concerts" ORDER BY "concerts"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mBand Load (0.2ms)[0m  [1m[34mSELECT  "bands".* FROM "bands" INNER JOIN "performances" ON "bands"."id" = "performances"."band_id" WHERE "performances"."concert_id" = ? LIMIT ?[0m  [["concert_id", 6], ["LIMIT", 11]]
+  [1m[36mConcert Load (0.3ms)[0m  [1m[34mSELECT  "concerts".* FROM "concerts" ORDER BY "concerts"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mBand Load (0.1ms)[0m  [1m[34mSELECT  "bands".* FROM "bands" INNER JOIN "performances" ON "bands"."id" = "performances"."band_id" WHERE "performances"."concert_id" = ? LIMIT ?[0m  [["concert_id", 6], ["LIMIT", 11]]
+  [1m[36mBand Load (0.4ms)[0m  [1m[34mSELECT "bands".* FROM "bands" INNER JOIN "performances" ON "bands"."id" = "performances"."band_id" WHERE "performances"."concert_id" = ?[0m  [["concert_id", 6]]
+  [1m[36mConcert Load (0.2ms)[0m  [1m[34mSELECT  "concerts".* FROM "concerts" ORDER BY "concerts"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mPerformance Load (0.3ms)[0m  [1m[34mSELECT "performances".* FROM "performances" WHERE "performances"."concert_id" = ? AND "performances"."opener" = ?[0m  [["concert_id", 6], ["opener", 0]]
+  [1m[36mBand Load (0.1ms)[0m  [1m[34mSELECT "bands".* FROM "bands" INNER JOIN "performances" ON "bands"."id" = "performances"."band_id" WHERE "performances"."concert_id" = ?[0m  [["concert_id", 6]]
+Started GET "/bands" for ::1 at 2019-08-15 16:18:42 -0400
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/lourenzmagoncia/.rvm/gems/ruby-2.6.1/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by BandsController#index as HTML
+  Rendering bands/index.html.erb within layouts/application
+  [1m[36mBand Load (0.2ms)[0m  [1m[34mSELECT "bands".* FROM "bands"[0m
+  ↳ app/views/bands/index.html.erb:4
+  Rendered bands/index.html.erb within layouts/application (13.7ms)
+Completed 200 OK in 596ms (Views: 582.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bands/5" for ::1 at 2019-08-15 16:19:05 -0400
+Processing by BandsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mBand Load (0.4ms)[0m  [1m[34mSELECT  "bands".* FROM "bands" WHERE "bands"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/bands_controller.rb:7
+  Rendering bands/show.html.erb within layouts/application
+  [1m[36mConcert Load (0.2ms)[0m  [1m[34mSELECT "concerts".* FROM "concerts" INNER JOIN "performances" ON "concerts"."id" = "performances"."concert_id" WHERE "performances"."band_id" = ?[0m  [["band_id", 5]]
+  ↳ app/views/bands/show.html.erb:4
+  Rendered bands/show.html.erb within layouts/application (28.0ms)
+Completed 200 OK in 65ms (Views: 45.1ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/concerts/5" for ::1 at 2019-08-15 16:19:09 -0400
+Processing by ConcertsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mConcert Load (0.3ms)[0m  [1m[34mSELECT  "concerts".* FROM "concerts" WHERE "concerts"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/concerts_controller.rb:3
+  Rendering concerts/show.html.erb within layouts/application
+  [1m[36mPerformance Load (0.5ms)[0m  [1m[34mSELECT "performances".* FROM "performances" WHERE "performances"."concert_id" = ? AND "performances"."opener" = ?[0m  [["concert_id", 5], ["opener", 0]]
+  ↳ app/models/concert.rb:8
+  [1m[36mBand Load (0.4ms)[0m  [1m[34mSELECT  "bands".* FROM "bands" INNER JOIN "performances" ON "bands"."id" = "performances"."band_id" WHERE "performances"."concert_id" = ? ORDER BY "bands"."id" ASC LIMIT ?[0m  [["concert_id", 5], ["LIMIT", 1]]
+  ↳ app/models/concert.rb:15
+  Rendered concerts/show.html.erb within layouts/application (21.3ms)
+Completed 200 OK in 50ms (Views: 43.7ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/concerts/6" for ::1 at 2019-08-15 16:19:11 -0400
+Processing by ConcertsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mConcert Load (0.2ms)[0m  [1m[34mSELECT  "concerts".* FROM "concerts" WHERE "concerts"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/concerts_controller.rb:3
+  Rendering concerts/show.html.erb within layouts/application
+  [1m[36mPerformance Load (0.6ms)[0m  [1m[34mSELECT "performances".* FROM "performances" WHERE "performances"."concert_id" = ? AND "performances"."opener" = ?[0m  [["concert_id", 6], ["opener", 0]]
+  ↳ app/models/concert.rb:8
+  [1m[36mBand Load (0.5ms)[0m  [1m[34mSELECT "bands".* FROM "bands" INNER JOIN "performances" ON "bands"."id" = "performances"."band_id" WHERE "performances"."concert_id" = ?[0m  [["concert_id", 6]]
+  ↳ app/models/concert.rb:19
+  Rendered concerts/show.html.erb within layouts/application (8.7ms)
+Completed 200 OK in 35ms (Views: 31.5ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/concerts/5" for ::1 at 2019-08-15 16:19:14 -0400
+Processing by ConcertsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mConcert Load (0.5ms)[0m  [1m[34mSELECT  "concerts".* FROM "concerts" WHERE "concerts"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/concerts_controller.rb:3
+  Rendering concerts/show.html.erb within layouts/application
+  [1m[36mPerformance Load (0.3ms)[0m  [1m[34mSELECT "performances".* FROM "performances" WHERE "performances"."concert_id" = ? AND "performances"."opener" = ?[0m  [["concert_id", 5], ["opener", 0]]
+  ↳ app/models/concert.rb:8
+  [1m[36mBand Load (0.3ms)[0m  [1m[34mSELECT  "bands".* FROM "bands" INNER JOIN "performances" ON "bands"."id" = "performances"."band_id" WHERE "performances"."concert_id" = ? ORDER BY "bands"."id" ASC LIMIT ?[0m  [["concert_id", 5], ["LIMIT", 1]]
+  ↳ app/models/concert.rb:15
+  Rendered concerts/show.html.erb within layouts/application (6.4ms)
+Completed 200 OK in 36ms (Views: 32.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bands/6" for ::1 at 2019-08-15 16:19:26 -0400
+Processing by BandsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mBand Load (0.3ms)[0m  [1m[34mSELECT  "bands".* FROM "bands" WHERE "bands"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/bands_controller.rb:7
+  Rendering bands/show.html.erb within layouts/application
+  [1m[36mConcert Load (0.2ms)[0m  [1m[34mSELECT "concerts".* FROM "concerts" INNER JOIN "performances" ON "concerts"."id" = "performances"."concert_id" WHERE "performances"."band_id" = ?[0m  [["band_id", 6]]
+  ↳ app/views/bands/show.html.erb:4
+  Rendered bands/show.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 41ms (Views: 37.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/bands/7" for ::1 at 2019-08-15 16:19:28 -0400
+Processing by BandsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mBand Load (0.2ms)[0m  [1m[34mSELECT  "bands".* FROM "bands" WHERE "bands"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/bands_controller.rb:7
+  Rendering bands/show.html.erb within layouts/application
+  [1m[36mConcert Load (0.2ms)[0m  [1m[34mSELECT "concerts".* FROM "concerts" INNER JOIN "performances" ON "concerts"."id" = "performances"."concert_id" WHERE "performances"."band_id" = ?[0m  [["band_id", 7]]
+  ↳ app/views/bands/show.html.erb:4
+  Rendered bands/show.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 37ms (Views: 34.3ms | ActiveRecord: 0.4ms)
+
+
