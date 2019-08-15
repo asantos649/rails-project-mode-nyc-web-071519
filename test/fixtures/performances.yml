@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  concert: one
+  band: one
+  opener: false
+
+two:
+  concert: two
+  band: two
+  opener: false

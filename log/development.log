@@ -1,0 +1,908 @@
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ bin/rails:9
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUsers (20190815181804)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190815181804_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190815181804"]]
+  ↳ bin/rails:9
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to CreateBands (20190815182020)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "bands" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190815182020_create_bands.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190815182020"]]
+  ↳ bin/rails:9
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to CreateConcerts (20190815182301)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "concerts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "date_and_time" datetime, "name" varchar, "location" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190815182301_create_concerts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190815182301"]]
+  ↳ bin/rails:9
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to CreatePerformances (20190815182454)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "performances" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "concert_id" integer, "band_id" integer, "opener" boolean, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_d53c8efbbd"
+FOREIGN KEY ("concert_id")
+  REFERENCES "concerts" ("id")
+, CONSTRAINT "fk_rails_37deb12ed1"
+FOREIGN KEY ("band_id")
+  REFERENCES "bands" ("id")
+)[0m
+  ↳ db/migrate/20190815182454_create_performances.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_performances_on_concert_id" ON "performances" ("concert_id")[0m
+  ↳ db/migrate/20190815182454_create_performances.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_performances_on_band_id" ON "performances" ("band_id")[0m
+  ↳ db/migrate/20190815182454_create_performances.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190815182454"]]
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to CreateUserConcerts (20190815182743)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "user_concerts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "concert_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_e2534684f5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_eda28db655"
+FOREIGN KEY ("concert_id")
+  REFERENCES "concerts" ("id")
+)[0m
+  ↳ db/migrate/20190815182743_create_user_concerts.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_user_concerts_on_user_id" ON "user_concerts" ("user_id")[0m
+  ↳ db/migrate/20190815182743_create_user_concerts.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_user_concerts_on_concert_id" ON "user_concerts" ("concert_id")[0m
+  ↳ db/migrate/20190815182743_create_user_concerts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190815182743"]]
+  ↳ bin/rails:9
+  [1m[35m (2.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-08-15 18:42:51.247321"], ["updated_at", "2019-08-15 18:42:51.247321"]]
+  ↳ bin/rails:9
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:8
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Bruce Jr."], ["email", "bruce@jr.com"], ["created_at", "2019-08-15 18:51:35.683915"], ["updated_at", "2019-08-15 18:51:35.683915"]]
+  ↳ db/seeds.rb:8
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:8
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Amanda Hugenkiss"], ["email", "amandahugenkiss@gmail.com"], ["created_at", "2019-08-15 18:51:35.687791"], ["updated_at", "2019-08-15 18:51:35.687791"]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mBand Create (0.4ms)[0m  [1m[32mINSERT INTO "bands" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "The Beatles"], ["created_at", "2019-08-15 18:51:35.698788"], ["updated_at", "2019-08-15 18:51:35.698788"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[36mBand Create (0.3ms)[0m  [1m[32mINSERT INTO "bands" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Elvis Presley"], ["created_at", "2019-08-15 18:51:35.702054"], ["updated_at", "2019-08-15 18:51:35.702054"]]
+  ↳ db/seeds.rb:12
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:8
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Bruce Jr."], ["email", "bruce@jr.com"], ["created_at", "2019-08-15 18:52:08.990305"], ["updated_at", "2019-08-15 18:52:08.990305"]]
+  ↳ db/seeds.rb:8
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:8
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Amanda Hugenkiss"], ["email", "amandahugenkiss@gmail.com"], ["created_at", "2019-08-15 18:52:08.994680"], ["updated_at", "2019-08-15 18:52:08.994680"]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mBand Create (0.3ms)[0m  [1m[32mINSERT INTO "bands" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "The Beatles"], ["created_at", "2019-08-15 18:52:09.002314"], ["updated_at", "2019-08-15 18:52:09.002314"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[36mBand Create (0.3ms)[0m  [1m[32mINSERT INTO "bands" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Elvis Presley"], ["created_at", "2019-08-15 18:52:09.004974"], ["updated_at", "2019-08-15 18:52:09.004974"]]
+  ↳ db/seeds.rb:12
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:8
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Bruce Jr."], ["email", "bruce@jr.com"], ["created_at", "2019-08-15 18:53:27.411181"], ["updated_at", "2019-08-15 18:53:27.411181"]]
+  ↳ db/seeds.rb:8
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:8
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Amanda Hugenkiss"], ["email", "amandahugenkiss@gmail.com"], ["created_at", "2019-08-15 18:53:27.415180"], ["updated_at", "2019-08-15 18:53:27.415180"]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mBand Create (0.3ms)[0m  [1m[32mINSERT INTO "bands" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "The Beatles"], ["created_at", "2019-08-15 18:53:27.422683"], ["updated_at", "2019-08-15 18:53:27.422683"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[36mBand Create (0.3ms)[0m  [1m[32mINSERT INTO "bands" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Elvis Presley"], ["created_at", "2019-08-15 18:53:27.426070"], ["updated_at", "2019-08-15 18:53:27.426070"]]
+  ↳ db/seeds.rb:12
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:14
+  [1m[36mConcert Create (0.3ms)[0m  [1m[32mINSERT INTO "concerts" ("date_and_time", "name", "location", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_and_time", "2019-08-15 18:53:27.431118"], ["name", "The Beatles: Back from the Dead"], ["location", "New York City"], ["created_at", "2019-08-15 18:53:27.436530"], ["updated_at", "2019-08-15 18:53:27.436530"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:15
+  [1m[36mConcert Create (0.4ms)[0m  [1m[32mINSERT INTO "concerts" ("date_and_time", "name", "location", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_and_time", "2019-08-15 18:53:27.439199"], ["name", "Elvis Presley: Back from the Dead 2: Electric Boogaloo"], ["location", "Los Angeles"], ["created_at", "2019-08-15 18:53:27.440244"], ["updated_at", "2019-08-15 18:53:27.440244"]]
+  ↳ db/seeds.rb:15
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:15
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mUserConcert Create (0.5ms)[0m  [1m[32mINSERT INTO "user_concerts" ("user_id", "concert_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 5], ["concert_id", 1], ["created_at", "2019-08-15 18:53:27.526662"], ["updated_at", "2019-08-15 18:53:27.526662"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:18
+  [1m[36mUserConcert Create (0.5ms)[0m  [1m[32mINSERT INTO "user_concerts" ("user_id", "concert_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 6], ["concert_id", 2], ["created_at", "2019-08-15 18:53:27.530203"], ["updated_at", "2019-08-15 18:53:27.530203"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:20
+  [1m[36mPerformance Create (0.4ms)[0m  [1m[32mINSERT INTO "performances" ("concert_id", "band_id", "opener", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["concert_id", 1], ["band_id", 5], ["opener", 0], ["created_at", "2019-08-15 18:53:27.544809"], ["updated_at", "2019-08-15 18:53:27.544809"]]
+  ↳ db/seeds.rb:20
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:20
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:21
+  [1m[36mPerformance Create (0.4ms)[0m  [1m[32mINSERT INTO "performances" ("concert_id", "band_id", "opener", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["concert_id", 2], ["band_id", 6], ["opener", 0], ["created_at", "2019-08-15 18:53:27.547610"], ["updated_at", "2019-08-15 18:53:27.547610"]]
+  ↳ db/seeds.rb:21
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:21
+  [1m[36mUserConcert Load (0.7ms)[0m  [1m[34mSELECT  "user_concerts".* FROM "user_concerts" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mUser Destroy (1.3ms)[0m  [1m[31mDELETE FROM "users"[0m
+  ↳ db/seeds.rb:8
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mUserConcert Destroy (1.2ms)[0m  [1m[31mDELETE FROM "user_concerts"[0m
+  ↳ db/seeds.rb:8
+  [1m[36mPerformance Destroy (1.4ms)[0m  [1m[31mDELETE FROM "performances"[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Destroy (1.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  ↳ db/seeds.rb:10
+  [1m[36mBand Destroy (1.2ms)[0m  [1m[31mDELETE FROM "bands"[0m
+  ↳ db/seeds.rb:11
+  [1m[36mConcert Destroy (1.0ms)[0m  [1m[31mDELETE FROM "concerts"[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Bruce Jr."], ["email", "bruce@jr.com"], ["created_at", "2019-08-15 18:56:35.551704"], ["updated_at", "2019-08-15 18:56:35.551704"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:15
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Amanda Hugenkiss"], ["email", "amandahugenkiss@gmail.com"], ["created_at", "2019-08-15 18:56:35.554571"], ["updated_at", "2019-08-15 18:56:35.554571"]]
+  ↳ db/seeds.rb:15
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:15
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mBand Create (0.3ms)[0m  [1m[32mINSERT INTO "bands" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "The Beatles"], ["created_at", "2019-08-15 18:56:35.560476"], ["updated_at", "2019-08-15 18:56:35.560476"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:18
+  [1m[36mBand Create (0.3ms)[0m  [1m[32mINSERT INTO "bands" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Elvis Presley"], ["created_at", "2019-08-15 18:56:35.563014"], ["updated_at", "2019-08-15 18:56:35.563014"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:20
+  [1m[36mConcert Create (0.3ms)[0m  [1m[32mINSERT INTO "concerts" ("date_and_time", "name", "location", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_and_time", "2019-08-15 18:56:35.564904"], ["name", "The Beatles: Back from the Dead"], ["location", "New York City"], ["created_at", "2019-08-15 18:56:35.569928"], ["updated_at", "2019-08-15 18:56:35.569928"]]
+  ↳ db/seeds.rb:20
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:20
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:21
+  [1m[36mConcert Create (0.3ms)[0m  [1m[32mINSERT INTO "concerts" ("date_and_time", "name", "location", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_and_time", "2019-08-15 18:56:35.571888"], ["name", "Elvis Presley: Back from the Dead 2: Electric Boogaloo"], ["location", "Los Angeles"], ["created_at", "2019-08-15 18:56:35.572551"], ["updated_at", "2019-08-15 18:56:35.572551"]]
+  ↳ db/seeds.rb:21
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:21
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:23
+  [1m[36mUserConcert Create (0.4ms)[0m  [1m[32mINSERT INTO "user_concerts" ("user_id", "concert_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 7], ["concert_id", 3], ["created_at", "2019-08-15 18:56:35.586632"], ["updated_at", "2019-08-15 18:56:35.586632"]]
+  ↳ db/seeds.rb:23
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUserConcert Create (0.4ms)[0m  [1m[32mINSERT INTO "user_concerts" ("user_id", "concert_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 8], ["concert_id", 4], ["created_at", "2019-08-15 18:56:35.590874"], ["updated_at", "2019-08-15 18:56:35.590874"]]
+  ↳ db/seeds.rb:24
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:26
+  [1m[36mPerformance Create (0.4ms)[0m  [1m[32mINSERT INTO "performances" ("concert_id", "band_id", "opener", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["concert_id", 3], ["band_id", 7], ["opener", 0], ["created_at", "2019-08-15 18:56:35.600850"], ["updated_at", "2019-08-15 18:56:35.600850"]]
+  ↳ db/seeds.rb:26
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:26
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:27
+  [1m[36mPerformance Create (0.4ms)[0m  [1m[32mINSERT INTO "performances" ("concert_id", "band_id", "opener", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["concert_id", 4], ["band_id", 8], ["opener", 0], ["created_at", "2019-08-15 18:56:35.604326"], ["updated_at", "2019-08-15 18:56:35.604326"]]
+  ↳ db/seeds.rb:27
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:27
+  [1m[36mUserConcert Load (0.6ms)[0m  [1m[34mSELECT  "user_concerts".* FROM "user_concerts" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mUserConcert Load (0.1ms)[0m  [1m[34mSELECT "user_concerts".* FROM "user_concerts"[0m
+  ↳ db/seeds.rb:8
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:8
+  [1m[36mUserConcert Destroy (1.3ms)[0m  [1m[31mDELETE FROM "user_concerts" WHERE "user_concerts"."id" = ?[0m  [["id", 3]]
+  ↳ db/seeds.rb:8
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:8
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:8
+  [1m[36mUserConcert Destroy (0.3ms)[0m  [1m[31mDELETE FROM "user_concerts" WHERE "user_concerts"."id" = ?[0m  [["id", 4]]
+  ↳ db/seeds.rb:8
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:8
+  [1m[36mPerformance Load (0.1ms)[0m  [1m[34mSELECT "performances".* FROM "performances"[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[36mPerformance Destroy (0.4ms)[0m  [1m[31mDELETE FROM "performances" WHERE "performances"."id" = ?[0m  [["id", 3]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[36mPerformance Destroy (0.4ms)[0m  [1m[31mDELETE FROM "performances" WHERE "performances"."id" = ?[0m  [["id", 4]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 7]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 8]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mBand Load (0.2ms)[0m  [1m[34mSELECT "bands".* FROM "bands"[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mBand Destroy (0.3ms)[0m  [1m[31mDELETE FROM "bands" WHERE "bands"."id" = ?[0m  [["id", 7]]
+  ↳ db/seeds.rb:11
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mBand Destroy (0.6ms)[0m  [1m[31mDELETE FROM "bands" WHERE "bands"."id" = ?[0m  [["id", 8]]
+  ↳ db/seeds.rb:11
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mConcert Load (0.2ms)[0m  [1m[34mSELECT "concerts".* FROM "concerts"[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[36mConcert Destroy (0.3ms)[0m  [1m[31mDELETE FROM "concerts" WHERE "concerts"."id" = ?[0m  [["id", 3]]
+  ↳ db/seeds.rb:12
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[36mConcert Destroy (0.3ms)[0m  [1m[31mDELETE FROM "concerts" WHERE "concerts"."id" = ?[0m  [["id", 4]]
+  ↳ db/seeds.rb:12
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Bruce Jr."], ["email", "bruce@jr.com"], ["created_at", "2019-08-15 18:57:23.777868"], ["updated_at", "2019-08-15 18:57:23.777868"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:15
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Amanda Hugenkiss"], ["email", "amandahugenkiss@gmail.com"], ["created_at", "2019-08-15 18:57:23.780722"], ["updated_at", "2019-08-15 18:57:23.780722"]]
+  ↳ db/seeds.rb:15
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:15
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mBand Create (0.3ms)[0m  [1m[32mINSERT INTO "bands" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "The Beatles"], ["created_at", "2019-08-15 18:57:23.783471"], ["updated_at", "2019-08-15 18:57:23.783471"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:18
+  [1m[36mBand Create (0.2ms)[0m  [1m[32mINSERT INTO "bands" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Elvis Presley"], ["created_at", "2019-08-15 18:57:23.785863"], ["updated_at", "2019-08-15 18:57:23.785863"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:20
+  [1m[36mConcert Create (0.3ms)[0m  [1m[32mINSERT INTO "concerts" ("date_and_time", "name", "location", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_and_time", "2019-08-15 18:57:23.787535"], ["name", "The Beatles: Back from the Dead"], ["location", "New York City"], ["created_at", "2019-08-15 18:57:23.788183"], ["updated_at", "2019-08-15 18:57:23.788183"]]
+  ↳ db/seeds.rb:20
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:20
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:21
+  [1m[36mConcert Create (0.3ms)[0m  [1m[32mINSERT INTO "concerts" ("date_and_time", "name", "location", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_and_time", "2019-08-15 18:57:23.790515"], ["name", "Elvis Presley: Back from the Dead 2: Electric Boogaloo"], ["location", "Los Angeles"], ["created_at", "2019-08-15 18:57:23.791241"], ["updated_at", "2019-08-15 18:57:23.791241"]]
+  ↳ db/seeds.rb:21
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:21
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:23
+  [1m[36mUserConcert Create (0.7ms)[0m  [1m[32mINSERT INTO "user_concerts" ("user_id", "concert_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 9], ["concert_id", 5], ["created_at", "2019-08-15 18:57:23.848447"], ["updated_at", "2019-08-15 18:57:23.848447"]]
+  ↳ db/seeds.rb:23
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUserConcert Create (0.4ms)[0m  [1m[32mINSERT INTO "user_concerts" ("user_id", "concert_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 10], ["concert_id", 6], ["created_at", "2019-08-15 18:57:23.853416"], ["updated_at", "2019-08-15 18:57:23.853416"]]
+  ↳ db/seeds.rb:24
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:26
+  [1m[36mPerformance Create (0.4ms)[0m  [1m[32mINSERT INTO "performances" ("concert_id", "band_id", "opener", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["concert_id", 5], ["band_id", 9], ["opener", 0], ["created_at", "2019-08-15 18:57:23.858376"], ["updated_at", "2019-08-15 18:57:23.858376"]]
+  ↳ db/seeds.rb:26
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:26
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:27
+  [1m[36mPerformance Create (0.4ms)[0m  [1m[32mINSERT INTO "performances" ("concert_id", "band_id", "opener", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["concert_id", 6], ["band_id", 10], ["opener", 0], ["created_at", "2019-08-15 18:57:23.861691"], ["updated_at", "2019-08-15 18:57:23.861691"]]
+  ↳ db/seeds.rb:27
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:27
+  [1m[36mUserConcert Load (0.6ms)[0m  [1m[34mSELECT  "user_concerts".* FROM "user_concerts" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUserConcerts (20190815182743)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE "user_concerts"[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.2ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20190815182743"]]
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreatePerformances (20190815182454)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE "performances"[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.2ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20190815182454"]]
+  ↳ bin/rails:9
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateConcerts (20190815182301)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE "concerts"[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.2ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20190815182301"]]
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateBands (20190815182020)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE "bands"[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.2ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20190815182020"]]
+  ↳ bin/rails:9
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUsers (20190815181804)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE "users"[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.2ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20190815181804"]]
+  ↳ bin/rails:9
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUsers (20190815181804)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/migrate/20190815181804_create_users.rb:3
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190815181804_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190815181804"]]
+  ↳ bin/rails:9
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to CreateBands (20190815182020)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "bands" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190815182020_create_bands.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190815182020"]]
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to CreateConcerts (20190815182301)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "concerts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "date_and_time" datetime, "name" varchar, "location" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190815182301_create_concerts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190815182301"]]
+  ↳ bin/rails:9
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to CreatePerformances (20190815182454)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "performances" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "concert_id" integer, "band_id" integer, "opener" boolean, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_d53c8efbbd"
+FOREIGN KEY ("concert_id")
+  REFERENCES "concerts" ("id")
+, CONSTRAINT "fk_rails_37deb12ed1"
+FOREIGN KEY ("band_id")
+  REFERENCES "bands" ("id")
+)[0m
+  ↳ db/migrate/20190815182454_create_performances.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_performances_on_concert_id" ON "performances" ("concert_id")[0m
+  ↳ db/migrate/20190815182454_create_performances.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_performances_on_band_id" ON "performances" ("band_id")[0m
+  ↳ db/migrate/20190815182454_create_performances.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190815182454"]]
+  ↳ bin/rails:9
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to CreateUserConcerts (20190815182743)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "user_concerts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "concert_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_e2534684f5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_eda28db655"
+FOREIGN KEY ("concert_id")
+  REFERENCES "concerts" ("id")
+)[0m
+  ↳ db/migrate/20190815182743_create_user_concerts.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_user_concerts_on_user_id" ON "user_concerts" ("user_id")[0m
+  ↳ db/migrate/20190815182743_create_user_concerts.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_user_concerts_on_concert_id" ON "user_concerts" ("concert_id")[0m
+  ↳ db/migrate/20190815182743_create_user_concerts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190815182743"]]
+  ↳ bin/rails:9
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mUserConcert Load (0.1ms)[0m  [1m[34mSELECT "user_concerts".* FROM "user_concerts"[0m
+  ↳ db/seeds.rb:8
+  [1m[36mPerformance Load (0.1ms)[0m  [1m[34mSELECT "performances".* FROM "performances"[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ db/seeds.rb:10
+  [1m[36mBand Load (0.1ms)[0m  [1m[34mSELECT "bands".* FROM "bands"[0m
+  ↳ db/seeds.rb:11
+  [1m[36mConcert Load (0.2ms)[0m  [1m[34mSELECT "concerts".* FROM "concerts"[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Bruce Jr."], ["email", "bruce@jr.com"], ["created_at", "2019-08-15 18:58:38.328924"], ["updated_at", "2019-08-15 18:58:38.328924"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:15
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Amanda Hugenkiss"], ["email", "amandahugenkiss@gmail.com"], ["created_at", "2019-08-15 18:58:38.333472"], ["updated_at", "2019-08-15 18:58:38.333472"]]
+  ↳ db/seeds.rb:15
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:15
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mBand Create (0.3ms)[0m  [1m[32mINSERT INTO "bands" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "The Beatles"], ["created_at", "2019-08-15 18:58:38.339635"], ["updated_at", "2019-08-15 18:58:38.339635"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:18
+  [1m[36mBand Create (0.3ms)[0m  [1m[32mINSERT INTO "bands" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Elvis Presley"], ["created_at", "2019-08-15 18:58:38.342486"], ["updated_at", "2019-08-15 18:58:38.342486"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:20
+  [1m[36mConcert Create (0.4ms)[0m  [1m[32mINSERT INTO "concerts" ("date_and_time", "name", "location", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_and_time", "2019-08-15 18:58:38.344607"], ["name", "The Beatles: Back from the Dead"], ["location", "New York City"], ["created_at", "2019-08-15 18:58:38.349491"], ["updated_at", "2019-08-15 18:58:38.349491"]]
+  ↳ db/seeds.rb:20
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:20
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:21
+  [1m[36mConcert Create (0.3ms)[0m  [1m[32mINSERT INTO "concerts" ("date_and_time", "name", "location", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_and_time", "2019-08-15 18:58:38.352156"], ["name", "Elvis Presley: Back from the Dead 2: Electric Boogaloo"], ["location", "Los Angeles"], ["created_at", "2019-08-15 18:58:38.352886"], ["updated_at", "2019-08-15 18:58:38.352886"]]
+  ↳ db/seeds.rb:21
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:21
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:23
+  [1m[36mUserConcert Create (0.4ms)[0m  [1m[32mINSERT INTO "user_concerts" ("user_id", "concert_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["concert_id", 1], ["created_at", "2019-08-15 18:58:38.361436"], ["updated_at", "2019-08-15 18:58:38.361436"]]
+  ↳ db/seeds.rb:23
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUserConcert Create (0.4ms)[0m  [1m[32mINSERT INTO "user_concerts" ("user_id", "concert_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 2], ["concert_id", 2], ["created_at", "2019-08-15 18:58:38.365326"], ["updated_at", "2019-08-15 18:58:38.365326"]]
+  ↳ db/seeds.rb:24
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:26
+  [1m[36mPerformance Create (0.4ms)[0m  [1m[32mINSERT INTO "performances" ("concert_id", "band_id", "opener", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["concert_id", 1], ["band_id", 1], ["opener", 0], ["created_at", "2019-08-15 18:58:38.373036"], ["updated_at", "2019-08-15 18:58:38.373036"]]
+  ↳ db/seeds.rb:26
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:26
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:27
+  [1m[36mPerformance Create (0.3ms)[0m  [1m[32mINSERT INTO "performances" ("concert_id", "band_id", "opener", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["concert_id", 2], ["band_id", 2], ["opener", 0], ["created_at", "2019-08-15 18:58:38.376169"], ["updated_at", "2019-08-15 18:58:38.376169"]]
+  ↳ db/seeds.rb:27
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:27
+  [1m[36mUserConcert Load (0.7ms)[0m  [1m[34mSELECT  "user_concerts".* FROM "user_concerts" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUserConcerts (20190815182743)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE "user_concerts"[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.2ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20190815182743"]]
+  ↳ bin/rails:9
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreatePerformances (20190815182454)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE "performances"[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.2ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20190815182454"]]
+  ↳ bin/rails:9
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateConcerts (20190815182301)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE "concerts"[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.2ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20190815182301"]]
+  ↳ bin/rails:9
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateBands (20190815182020)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE "bands"[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.2ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20190815182020"]]
+  ↳ bin/rails:9
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUsers (20190815181804)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE "users"[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.2ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20190815181804"]]
+  ↳ bin/rails:9
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUsers (20190815181804)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/migrate/20190815181804_create_users.rb:3
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190815181804_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190815181804"]]
+  ↳ bin/rails:9
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to CreateBands (20190815182020)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "bands" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190815182020_create_bands.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190815182020"]]
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to CreateConcerts (20190815182301)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "concerts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "date_and_time" datetime, "name" varchar, "location" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190815182301_create_concerts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190815182301"]]
+  ↳ bin/rails:9
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to CreatePerformances (20190815182454)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "performances" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "concert_id" integer, "band_id" integer, "opener" boolean, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_d53c8efbbd"
+FOREIGN KEY ("concert_id")
+  REFERENCES "concerts" ("id")
+, CONSTRAINT "fk_rails_37deb12ed1"
+FOREIGN KEY ("band_id")
+  REFERENCES "bands" ("id")
+)[0m
+  ↳ db/migrate/20190815182454_create_performances.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_performances_on_concert_id" ON "performances" ("concert_id")[0m
+  ↳ db/migrate/20190815182454_create_performances.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_performances_on_band_id" ON "performances" ("band_id")[0m
+  ↳ db/migrate/20190815182454_create_performances.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190815182454"]]
+  ↳ bin/rails:9
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to CreateUserConcerts (20190815182743)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "user_concerts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "concert_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_e2534684f5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_eda28db655"
+FOREIGN KEY ("concert_id")
+  REFERENCES "concerts" ("id")
+)[0m
+  ↳ db/migrate/20190815182743_create_user_concerts.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_user_concerts_on_user_id" ON "user_concerts" ("user_id")[0m
+  ↳ db/migrate/20190815182743_create_user_concerts.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_user_concerts_on_concert_id" ON "user_concerts" ("concert_id")[0m
+  ↳ db/migrate/20190815182743_create_user_concerts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190815182743"]]
+  ↳ bin/rails:9
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mUserConcert Load (0.1ms)[0m  [1m[34mSELECT "user_concerts".* FROM "user_concerts"[0m
+  ↳ db/seeds.rb:8
+  [1m[36mPerformance Load (0.1ms)[0m  [1m[34mSELECT "performances".* FROM "performances"[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ db/seeds.rb:10
+  [1m[36mBand Load (0.1ms)[0m  [1m[34mSELECT "bands".* FROM "bands"[0m
+  ↳ db/seeds.rb:11
+  [1m[36mConcert Load (0.1ms)[0m  [1m[34mSELECT "concerts".* FROM "concerts"[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Bruce Jr."], ["email", "bruce@jr.com"], ["created_at", "2019-08-15 19:02:53.593571"], ["updated_at", "2019-08-15 19:02:53.593571"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:15
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Amanda Hugenkiss"], ["email", "amandahugenkiss@gmail.com"], ["created_at", "2019-08-15 19:02:53.596816"], ["updated_at", "2019-08-15 19:02:53.596816"]]
+  ↳ db/seeds.rb:15
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:15
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mBand Create (0.3ms)[0m  [1m[32mINSERT INTO "bands" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "The Beatles"], ["created_at", "2019-08-15 19:02:53.602696"], ["updated_at", "2019-08-15 19:02:53.602696"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:18
+  [1m[36mBand Create (0.3ms)[0m  [1m[32mINSERT INTO "bands" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Elvis Presley"], ["created_at", "2019-08-15 19:02:53.605780"], ["updated_at", "2019-08-15 19:02:53.605780"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:20
+  [1m[36mConcert Create (0.3ms)[0m  [1m[32mINSERT INTO "concerts" ("date_and_time", "name", "location", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_and_time", "2019-08-15 19:02:53.607899"], ["name", "The Beatles: Back from the Dead"], ["location", "New York City"], ["created_at", "2019-08-15 19:02:53.612853"], ["updated_at", "2019-08-15 19:02:53.612853"]]
+  ↳ db/seeds.rb:20
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:20
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:21
+  [1m[36mConcert Create (0.3ms)[0m  [1m[32mINSERT INTO "concerts" ("date_and_time", "name", "location", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["date_and_time", "2019-08-15 19:02:53.615463"], ["name", "Elvis Presley: Back from the Dead 2: Electric Boogaloo"], ["location", "Los Angeles"], ["created_at", "2019-08-15 19:02:53.616166"], ["updated_at", "2019-08-15 19:02:53.616166"]]
+  ↳ db/seeds.rb:21
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:21
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:23
+  [1m[36mUserConcert Create (0.4ms)[0m  [1m[32mINSERT INTO "user_concerts" ("user_id", "concert_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["concert_id", 1], ["created_at", "2019-08-15 19:02:53.624314"], ["updated_at", "2019-08-15 19:02:53.624314"]]
+  ↳ db/seeds.rb:23
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUserConcert Create (0.4ms)[0m  [1m[32mINSERT INTO "user_concerts" ("user_id", "concert_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 2], ["concert_id", 2], ["created_at", "2019-08-15 19:02:53.628741"], ["updated_at", "2019-08-15 19:02:53.628741"]]
+  ↳ db/seeds.rb:24
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:26
+  [1m[36mPerformance Create (0.4ms)[0m  [1m[32mINSERT INTO "performances" ("concert_id", "band_id", "opener", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["concert_id", 1], ["band_id", 1], ["opener", 0], ["created_at", "2019-08-15 19:02:53.636712"], ["updated_at", "2019-08-15 19:02:53.636712"]]
+  ↳ db/seeds.rb:26
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:26
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:27
+  [1m[36mPerformance Create (0.3ms)[0m  [1m[32mINSERT INTO "performances" ("concert_id", "band_id", "opener", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["concert_id", 2], ["band_id", 2], ["opener", 0], ["created_at", "2019-08-15 19:02:53.639939"], ["updated_at", "2019-08-15 19:02:53.639939"]]
+  ↳ db/seeds.rb:27
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:27
+  [1m[36mUserConcert Load (0.7ms)[0m  [1m[34mSELECT  "user_concerts".* FROM "user_concerts" LIMIT ?[0m  [["LIMIT", 11]]
