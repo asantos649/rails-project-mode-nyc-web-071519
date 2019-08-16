@@ -5,3 +5,7 @@
     <li><%= link_to s.concert.name, concert_path(s.concert)%></li>
     <% end %>
 </ul>
+
+<footer>
+    <%= button_to  "Delete Account", delete_user_path(@user), method: 'delete' %>
+</footer>

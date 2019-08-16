@@ -2404,3 +2404,261 @@ Processing by ConcertsController#show as HTML
 Completed 200 OK in 43ms (Views: 38.5ms | ActiveRecord: 1.5ms)
 
 
+Started GET "/" for ::1 at 2019-08-16 10:48:14 -0400
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/flatironschool/.rvm/gems/ruby-2.6.1/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by ApplicationController#login as HTML
+  Rendering login.html.erb within layouts/application
+  Rendered login.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 315ms (Views: 309.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2019-08-16 10:48:31 -0400
+Processing by ApplicationController#verification as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"mdpE2gNOSvgoQuKY2WkxZ+wDY0+MsfWefppWKWpVMeY6gfg1HJPZpV0QZkIbiG/8ar+/yM09JLujk1x5vkn7xw==", "email"=>"andrew@santos.com", "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "andrew@santos.com"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+No template found for ApplicationController#verification, rendering head :no_content
+Completed 204 No Content in 16ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/users/new" for ::1 at 2019-08-16 10:49:15 -0400
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (8.7ms)
+Completed 200 OK in 35ms (Views: 30.1ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/login" for ::1 at 2019-08-16 10:49:18 -0400
+Processing by ApplicationController#verification as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"mdpE2gNOSvgoQuKY2WkxZ+wDY0+MsfWefppWKWpVMeY6gfg1HJPZpV0QZkIbiG/8ar+/yM09JLujk1x5vkn7xw==", "email"=>"bruce@jr.com", "commit"=>"Log In"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bruce@jr.com"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+Redirected to http://localhost:3000/users/7
+Completed 302 Found in 7ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/users/7" for ::1 at 2019-08-16 10:49:18 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUserConcert Load (0.2ms)[0m  [1m[34mSELECT "user_concerts".* FROM "user_concerts" WHERE "user_concerts"."user_id" = ?[0m  [["user_id", 7]]
+  ↳ app/views/users/show.html.erb:4
+  [1m[36mConcert Load (0.1ms)[0m  [1m[34mSELECT  "concerts".* FROM "concerts" WHERE "concerts"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:5
+  Rendered users/show.html.erb within layouts/application (22.6ms)
+Completed 200 OK in 55ms (Views: 44.1ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/concerts/7" for ::1 at 2019-08-16 10:49:28 -0400
+Processing by ConcertsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mConcert Load (0.2ms)[0m  [1m[34mSELECT  "concerts".* FROM "concerts" WHERE "concerts"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/concerts_controller.rb:3
+  Rendering concerts/show.html.erb within layouts/application
+  [1m[36mPerformance Load (0.1ms)[0m  [1m[34mSELECT "performances".* FROM "performances" WHERE "performances"."concert_id" = ? AND "performances"."opener" = ?[0m  [["concert_id", 7], ["opener", 0]]
+  ↳ app/models/concert.rb:8
+  [1m[36mBand Load (2.4ms)[0m  [1m[34mSELECT  "bands".* FROM "bands" INNER JOIN "performances" ON "bands"."id" = "performances"."band_id" WHERE "performances"."concert_id" = ? ORDER BY "bands"."id" ASC LIMIT ?[0m  [["concert_id", 7], ["LIMIT", 1]]
+  ↳ app/models/concert.rb:15
+  Rendered concerts/show.html.erb within layouts/application (31.8ms)
+Completed 200 OK in 58ms (Views: 49.7ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/users/edit" for ::1 at 2019-08-16 10:50:18 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"edit"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3
+Completed 404 Not Found in 3ms (ActiveRecord: 0.2ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=edit):
+  
+app/controllers/users_controller.rb:3:in `show'
+Started GET "/users/7/edit" for ::1 at 2019-08-16 10:50:23 -0400
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17
+Completed 406 Not Acceptable in 29ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionController::UnknownFormat (UsersController#edit is missing a template for this request format and variant.
+
+request.formats: ["text/html"]
+request.variant: []
+
+NOTE! For XHR/Ajax or API requests, this action would normally respond with 204 No Content: an empty white screen. Since you're loading it in a web browser, we assume that you expected to actually render a template, not nothing, so we're showing an error to be extra-clear. If you expect 204 No Content, carry on. That's what you'll get from an XHR or API request. Give it a shot.):
+  
+actionpack (5.2.3) lib/action_controller/metal/implicit_render.rb:55:in `default_render'
+actionpack (5.2.3) lib/action_controller/metal/basic_implicit_render.rb:6:in `block in send_action'
+actionpack (5.2.3) lib/action_controller/metal/basic_implicit_render.rb:6:in `tap'
+actionpack (5.2.3) lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+actionpack (5.2.3) lib/abstract_controller/base.rb:194:in `process_action'
+actionpack (5.2.3) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (5.2.3) lib/abstract_controller/callbacks.rb:42:in `block in process_action'
+activesupport (5.2.3) lib/active_support/callbacks.rb:132:in `run_callbacks'
+actionpack (5.2.3) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.3) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.3) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.3) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.3) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.3) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.3) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.3) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.3) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.3) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.3) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.3) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.3) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.3) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.3) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.3) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.7) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.0.7) lib/rack/etag.rb:25:in `call'
+rack (2.0.7) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.7) lib/rack/head.rb:12:in `call'
+actionpack (5.2.3) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.0.7) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.7) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/cookies.rb:670:in `call'
+activerecord (5.2.3) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/users/7/edit" for ::1 at 2019-08-16 10:50:57 -0400
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17
+  Rendering users/edit.html.erb within layouts/application
+  Rendered users/edit.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 28ms (Views: 25.6ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/users/7" for ::1 at 2019-08-16 10:51:24 -0400
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"N4OhD2G7iThZC0VFqEioT1Te6/ceYnkggmL46nV8YEuU2B3gfmYaZSxZwZ9qqfbU0mI3cF/uqAVfa/K6oWCqag==", "user"=>{"name"=>"Bruce Jr.", "email"=>"bruce@jr.edu"}, "commit"=>"Edit User", "id"=>"7"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:22
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "email" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["email", "bruce@jr.edu"], ["updated_at", "2019-08-16 14:51:24.292663"], ["id", 7]]
+  ↳ app/controllers/users_controller.rb:22
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:22
+Redirected to http://localhost:3000/users/7
+Completed 302 Found in 10ms (ActiveRecord: 3.6ms)
+
+
+Started GET "/users/7" for ::1 at 2019-08-16 10:51:24 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUserConcert Load (0.1ms)[0m  [1m[34mSELECT "user_concerts".* FROM "user_concerts" WHERE "user_concerts"."user_id" = ?[0m  [["user_id", 7]]
+  ↳ app/views/users/show.html.erb:4
+  [1m[36mConcert Load (0.1ms)[0m  [1m[34mSELECT  "concerts".* FROM "concerts" WHERE "concerts"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:5
+  Rendered users/show.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 26ms (Views: 23.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2019-08-16 10:51:30 -0400
+Processing by ApplicationController#login as HTML
+  Rendering login.html.erb within layouts/application
+  Rendered login.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 29ms (Views: 28.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2019-08-16 10:51:35 -0400
+Processing by ApplicationController#verification as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Okt0FuO70tXsH1FUfKPgtozeXiJ1zGAKxjhIjUY/s1SZEMj5/GZBiJlN1Y6+Qr4tCmKCpTRAsS8bMULdkiN5dQ==", "email"=>"bruce@jr.net", "commit"=>"Log In"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bruce@jr.net"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+No template found for ApplicationController#verification, rendering head :no_content
+Completed 204 No Content in 5ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2019-08-16 10:53:08 -0400
+Processing by ApplicationController#login as HTML
+  Rendering login.html.erb within layouts/application
+  Rendered login.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 23ms (Views: 22.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2019-08-16 10:53:12 -0400
+Processing by ApplicationController#verification as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2U1jrM7W0IdOI4xq9kDqU07BCrzNYy/LLJ/EFt3gGwB6Ft9D0QtD2jtxCLA0obTIyH3WO4zv/u7xls5GCfzRIQ==", "email"=>"bspdfuinvae", "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bspdfuinvae"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+Redirected to http://localhost:3000/
+Completed 302 Found in 11ms (ActiveRecord: 1.3ms)
+
+
+Started GET "/" for ::1 at 2019-08-16 10:53:12 -0400
+Processing by ApplicationController#login as HTML
+  Rendering login.html.erb within layouts/application
+  Rendered login.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 25ms (Views: 24.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2019-08-16 10:53:21 -0400
+Processing by ApplicationController#verification as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"WhciLrtZ3TC/PLH3Edh2HVv/5dQ01M70yOS8kV68+Z35TJ7BpIRObcpuNS3TOSiG3UM5U3VYH9EV7bbBiqAzvA==", "email"=>"bruce@jr.edu", "commit"=>"Log In"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bruce@jr.edu"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+Redirected to http://localhost:3000/users/7
+Completed 302 Found in 10ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/users/7" for ::1 at 2019-08-16 10:53:21 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUserConcert Load (0.4ms)[0m  [1m[34mSELECT "user_concerts".* FROM "user_concerts" WHERE "user_concerts"."user_id" = ?[0m  [["user_id", 7]]
+  ↳ app/views/users/show.html.erb:4
+  [1m[36mConcert Load (0.2ms)[0m  [1m[34mSELECT  "concerts".* FROM "concerts" WHERE "concerts"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:5
+  Rendered users/show.html.erb within layouts/application (18.7ms)
+Completed 200 OK in 45ms (Views: 38.1ms | ActiveRecord: 2.3ms)
+
+
