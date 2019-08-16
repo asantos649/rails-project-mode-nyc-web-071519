@@ -1971,3 +1971,32 @@ Processing by UsersController#show as HTML
 Completed 200 OK in 24ms (Views: 22.2ms | ActiveRecord: 0.1ms)
 
 
+Started GET "/" for ::1 at 2019-08-16 10:49:51 -0400
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/lourenzmagoncia/.rvm/gems/ruby-2.6.1/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by ApplicationController#login as HTML
+  Rendering login.html.erb within layouts/application
+  Rendered login.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 310ms (Views: 301.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for ::1 at 2019-08-16 10:49:58 -0400
+Processing by ApplicationController#verification as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"HngloIGZec236RNE/7NOLCqiMHoy863xpW9cp+2ASYv+guVkWLhznE2rTmvurjGOGNYY3m4/8SFaEHDpCT7Czw==", "email"=>"bruce@jr.com", "commit"=>"Log In"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bruce@jr.com"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+Redirected to http://localhost:3000/users/7
+Completed 302 Found in 23ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/users/7" for ::1 at 2019-08-16 10:49:58 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 56ms (Views: 52.8ms | ActiveRecord: 0.3ms)
+
+
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
