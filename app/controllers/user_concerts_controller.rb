@@ -4,7 +4,7 @@ class UserConcertsController < ApplicationController
     end
 
     def new
-
+        @user_concert = UserConcert.new
     end
 
     def create
