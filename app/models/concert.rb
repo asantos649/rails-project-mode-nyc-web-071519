@@ -21,4 +21,20 @@ class Concert < ApplicationRecord
             bands.join(", ").titleize
         end
     end
+
+    def date
+        date_and_time.in_time_zone('Eastern Time (US & Canada)').strftime("%A, %B %d, %Y")
+    end
+
+    def time
+        date_and_time.in_time_zone('Eastern Time (US & Canada)').strftime("%l %p")
+    end
+
+    def display
+        if name
+            "#{date} #{time} - #{name}: Featuring #{headliners} - #{location}"
+        else
+            "#{date} #{time} - #{headliners} - #{location}"
+        end
+    end
 end

@@ -14,7 +14,7 @@
   </tr>
   <tr>
     <td><%=@concert.date_and_time.in_time_zone('Eastern Time (US & Canada)').strftime("%A, %B %d, %Y")%></td>
-    <td><%=@concert.date_and_time.in_time_zone('Eastern Time (US & Canada)').strftime("%l %p")%></td> 
+    <td><%=@concert.time%></td> 
     <td><%=@concert.location%></td>
   </tr>
 </table>
