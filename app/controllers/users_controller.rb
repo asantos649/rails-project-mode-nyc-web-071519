@@ -25,6 +25,6 @@ class UsersController < ApplicationController
 
     def destroy
         User.find(params[:id]).destroy
-        # redirect to login page
+        redirect_to login_path
     end
 end

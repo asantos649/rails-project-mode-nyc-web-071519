@@ -6,6 +6,8 @@
     <% end %>
 </ul>
 
+<%= button_to "Add a new Show", new_user_concert_path, method: 'get' %>
+
 <footer>
-    <%= button_to  "Delete Account", delete_user_path(@user), method: 'delete' %>
+    <%= button_to  "Delete Account", user_path(@user), method: 'delete' %>
 </footer>

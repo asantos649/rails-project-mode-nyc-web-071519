@@ -1,1 +1,21 @@
 <h1><%= @concert.headliners %></h1>
+
+<h2><%= @concert.name %></h2>
+
+<p>
+<table>
+  <col width = "300px">
+  <col width = "125px">
+  <col width = "300px">
+  <tr>
+    <th align="left">Date</th>
+    <th align="left">Time</th> 
+    <th align="left">City</th>
+  </tr>
+  <tr>
+    <td><%=@concert.date_and_time.in_time_zone('Eastern Time (US & Canada)').strftime("%A, %B %d, %Y")%></td>
+    <td><%=@concert.date_and_time.in_time_zone('Eastern Time (US & Canada)').strftime("%l %p")%></td> 
+    <td><%=@concert.location%></td>
+  </tr>
+</table>
+</p>
