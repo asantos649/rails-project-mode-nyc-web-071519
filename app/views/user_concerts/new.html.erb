@@ -1,6 +1,12 @@
 <h1>Select a Concert</h1>
 
 <%= form_for @user_concert do |f| %>
-  <%= f.collection_select :concert, @concerts, :id, :display %><br>
-  <%= f.submit "Select Concert" %>
+  <%= f.collection_select :concert_id, @concerts, :id, :display %><br>
+  <%= f.label :rating %>
+  <%= f.number_field :rating %><br>
+  <%= f.label :favorite_song %>
+  <%= f.text_field :favorite_song %><br>
+  <%= f.label :favorite %>
+  <%= f.check_box :favorite%><br>
+  <%= f.submit "Save a Music Memo" %>
 <% end %>

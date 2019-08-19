@@ -15,6 +15,8 @@ class Concert < ApplicationRecord
             self.bands.first.name.titleize
         when 2
             "#{self.bands.first.name.titleize} & #{self.bands.second.name.titleize}"
+        when 0
+            "To be Announced"
         else
             bands = self.bands.map {|band| band.name}
             bands[-1] = "& #{bands[-1]}"
@@ -36,5 +38,9 @@ class Concert < ApplicationRecord
         else
             "#{date} #{time} - #{headliners} - #{location}"
         end
+    end
+
+    def self.ordered_list
+        Concert.all.sort_by{|c| c.date_and_time}.reverse
     end
 end

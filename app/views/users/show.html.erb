@@ -2,7 +2,7 @@
 
 <ul>
     <% @shows.each do |s| %>
-    <li><%= link_to s.concert.name, concert_path(s.concert)%></li>
+    <li><%= link_to s.concert.display, user_concert_path(s)%></li>
     <% end %>
 </ul>
 

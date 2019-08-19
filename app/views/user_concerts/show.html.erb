@@ -1,0 +1,30 @@
+<h1><%= @user_concert.concert.headliners %></h1>
+
+<h2><%= @user_concert.concert.name %></h2>
+
+<p>
+<table>
+  <col width = "250px">
+  <col width = "100px">
+  <col width = "220px">
+  <col width = "100px">
+  <col width = "220px">
+  <col width = "100px">
+  <tr>
+    <th align="left">Date</th>
+    <th align="left">Time</th> 
+    <th align="left">City</th>
+    <th align="left">Rating</th>
+    <th align="left">Favorite Song</th>
+    <th align="left">Favorite?</th>
+  </tr>
+  <tr>
+    <td><%=@user_concert.concert.date_and_time.in_time_zone('Eastern Time (US & Canada)').strftime("%A, %B %d, %Y")%></td>
+    <td><%=@user_concert.concert.time%></td> 
+    <td><%=@user_concert.concert.location%></td>
+    <td><%=@user_concert.rating%></td>
+    <td><%=@user_concert.favorite_song%></td>
+    <td><%=@user_concert.favorite%></td>
+  </tr>
+</table>
+</p>
