@@ -1,4 +1,4 @@
-<h1>Select a Concert</h1>
+<h1>Edit Concert</h1>
 
 <% if flash[:errors] %>
   <% flash[:errors].map do |error| %>
@@ -6,13 +6,15 @@
   <% end %>
 <% end %>
 
-<%= form_for @user_concert do |f| %>
+<%= form_for @user_concert, url: {action: "update"} do |f| %>
   <%= f.collection_select :concert_id, @concerts, :id, :display %><br>
   <%= f.label :rating %>
   <%= f.number_field :rating %><br>
   <%= f.label :favorite_song %>
   <%= f.text_field :favorite_song %><br>
   <%= f.label :favorite %>
-  <%= f.check_box :favorite%><br>
-  <%= f.submit "Save a Music Memo" %>
+  <%= f.check_box :favorite %><br>
+  <%= f.submit "Edit Music Memo" %>
 <% end %>
+
+<%= button_to "Delete Music Memo", user_concert_path(@user_concert), method: "delete" %>

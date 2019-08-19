@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
     helper_method :user
+    helper_method :validate
+
 
     def login
         render "/login.html.erb"
@@ -19,5 +21,13 @@ class ApplicationController < ActionController::Base
 
     def user
         session[:user] ||= nil
+    end
+
+    def check_for_errors
+        if flash[:errors]
+            flash[:errors].map do |error|
+                error
+            end
+        end
     end
 end
