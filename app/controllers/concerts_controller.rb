@@ -1,10 +1,11 @@
 class ConcertsController < ApplicationController
+    before_action :concerts, only: :index
+    before_action :find_concert, only: :show
+
     def show
-        @concert = Concert.find(params[:id])
     end
 
     def index
-        @concerts = Concert.ordered_list
     end
     
 end

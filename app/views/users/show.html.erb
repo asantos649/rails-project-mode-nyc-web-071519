@@ -1,5 +1,22 @@
 <h1><%= @user.name %></h1>
 
+
+<%= form_tag filter_path, method: "get" do%>
+    <%=label_tag :band%>
+    <%=text_field_tag :band, @filter.band%>
+    <%=label_tag :location%>
+    <%=text_field_tag :location, @filter.location%>
+    <%=label_tag :date%>
+    <%=date_field_tag :date, @filter.date%>
+    <%=label_tag :rating%>
+    <%=number_field_tag :rating, @filter.rating%>
+    <%=label_tag :favorite%>
+    <%=check_box_tag :favorite, :favorite, checked = (@filter.favorite)%>
+    <%=hidden_field_tag :user, @user.id%><br>
+    <%=submit_tag "Filter"%>
+<%end%>
+<%=(button_to  "Unfilter", user_path(@user), method: "get") if @show_unfilter%>
+
 <ul>
     <% @shows.each do |s| %>
     <li><%= link_to s.concert.display, user_concert_path(s)%></li>

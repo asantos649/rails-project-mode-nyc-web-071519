@@ -1,9 +1,13 @@
 class BandsController < ApplicationController
+    before_action :bands, only: :index
+    before_action :find_band, only: :show
+
+    
     def index
-        @bands = Band.all
+        
     end
 
     def show
-        @band = Band.find(params[:id])
+        
     end
 end

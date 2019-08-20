@@ -1,11 +1,14 @@
 class UserConcertsController < ApplicationController
+    before_action :concerts, only: [:new, :edit]
+    before_action :find_user_concert, only: [:show, :edit, :update]
+
+
     def show
-        @user_concert = UserConcert.find(params[:id])
+
     end
 
     def new
         @user_concert = UserConcert.new
-        @concerts = Concert.ordered_list
     end
 
     def create 
@@ -20,13 +23,11 @@ class UserConcertsController < ApplicationController
         end
     end
 
-    def edit
-        @user_concert = UserConcert.find(params[:id])
-        @concerts = Concert.ordered_list
+    def edit      
+
     end
 
     def update
-        @user_concert = UserConcert.find(params[:id])
         # @user_concert.update(user_concert_params)
         # redirect_to user_path(session[:user])
         temp_user_concert = UserConcert.new(user_concert_params)
