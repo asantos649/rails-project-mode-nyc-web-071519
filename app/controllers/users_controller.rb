@@ -7,6 +7,11 @@ class UsersController < ApplicationController
         @shows = UserConcert.where(user_id: @user.id)
     end
 
+    def public_show
+        @filter = Filter.new({})
+        @shows = UserConcert.where(user_id: @user.id)
+    end
+
     def new
         @user = User.new
        
@@ -78,6 +83,11 @@ class UsersController < ApplicationController
     end
 
     def authorize_user
-        redirect_to user_path(session[:user]) unless @user == current_user
+        # make sure the title of the public show page matches the name of the user you're seeing
+        @user = User.find(params[:id])
+        @filter = Filter.new({})
+        @shows = UserConcert.where(user_id: @user.id)
+        byebug
+        render "users/public_show.html.erb" unless @user == current_user
     end
 end
