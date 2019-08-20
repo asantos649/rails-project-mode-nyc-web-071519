@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  get '/', to: "application#login", as: "login"
-  post '/login', to: "application#verification", as: "verify"
+  get '/login', to: "sessions#login", as: "login"
+  post '/login', to: "sessions#verification", as: "verify"
   get '/filter', to: "users#filter", as: "filter"
+  delete '/logout', to: "sessions#destroy", as: "logout"
+  get '/', to: "sessions#login"
 
   resources :user_concerts, except: :index
   resources :bands, only: [:index, :show]

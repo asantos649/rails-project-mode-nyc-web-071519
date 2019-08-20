@@ -1,37 +1,7 @@
 class ApplicationController < ActionController::Base
-    helper_method :user
-    helper_method :validate
-    
-
-
-    def login
-        render "/login.html.erb"
-    end
-
-    def verification
-        # byebug
-        user = User.find_by(email: params[:email])
-        if user
-            session[:user] = user.id
-            byebug
-            redirect_to user_path(user)
-        else
-            redirect_to login_path
-        end
-
-    end
-
-    def user
-        session[:user] ||= nil
-    end
-
-    def check_for_errors
-        if flash[:errors]
-            flash[:errors].map do |error|
-                error
-            end
-        end
-    end
+    helper_method :current_user
+    helper_method :logged_in?
+    before_action :authorized
 
     def bands
         @bands = Band.all
@@ -55,5 +25,25 @@ class ApplicationController < ActionController::Base
 
     def find_user
         @user = User.find(params[:id])
+    end
+
+    def check_for_errors
+        if flash[:errors]
+            flash[:errors].map do |error|
+                error
+            end
+        end
+    end
+
+    def current_user
+        @user = User.find_by(id: session[:user])
+    end
+
+    def logged_in?
+        !!current_user
+    end
+
+    def authorized
+        redirect_to login_path unless logged_in?
     end
 end

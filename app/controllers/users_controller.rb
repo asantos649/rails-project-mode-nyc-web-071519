@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-    before_action :find_user, only: [:show, :edit, :update, :destroy]
+    before_action :find_user, only: [:show, :edit, :update, :destroy, :authorize_user]
+    before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy]
 
     def show
         @filter = Filter.new({})
@@ -12,8 +13,14 @@ class UsersController < ApplicationController
     end
 
     def create
-        @user = User.create(params.require(:user).permit(:name, :email))
-        redirect_to user_path(@user)
+        @user = User.new(params.require(:user).permit(:name, :email, :password))
+        if @user.valid?
+            @user.save
+            redirect_to user_path(@user)
+        else
+            flash[:errors] = @user.errors.full_messages
+            redirect_to new_user_path
+        end
     end
 
     def edit
@@ -21,9 +28,23 @@ class UsersController < ApplicationController
     end
 
     def update
+        # temp_user = User.new(params.require(:user).permit(:name, :email, :password))
+        # if temp_user.valid?
+        #     @user.update(params.require(:user).permit(:name, :email, :password))
+        #     redirect_to user_path(@user)
+        # else
+        #     flash[:errors] = temp_user.errors.full_messages
+        #     redirect_to edit_user_path
+        # end
 
-        @user.update(params.require(:user).permit(:name, :email))
-        redirect_to user_path(@user)
+        @user.attributes = params.require(:user).permit(:name, :email, :password)
+        if @user.valid?
+            @user.save
+            redirect_to user_path(@user)
+        else
+            flash[:errors] = @user.errors.full_messages
+            redirect_to edit_user_path
+        end
     end
 
     def destroy
@@ -34,7 +55,6 @@ class UsersController < ApplicationController
     def filter
        @shows = UserConcert.filter_list(params[:user], params)
        @user = User.find(params[:user])
-       @show_unfilter = true
        @filter = create_filter(params)
        render "users/show.html.erb"
     end
@@ -55,5 +75,9 @@ class UsersController < ApplicationController
         #   end
         #   message_hash
         filter
+    end
+
+    def authorize_user
+        redirect_to user_path(session[:user]) unless @user == current_user
     end
 end

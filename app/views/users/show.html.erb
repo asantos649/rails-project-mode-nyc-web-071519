@@ -11,11 +11,11 @@
     <%=label_tag :rating%>
     <%=number_field_tag :rating, @filter.rating%>
     <%=label_tag :favorite%>
-    <%=check_box_tag :favorite, :favorite, checked = (@filter.favorite)%>
+    <%=check_box_tag :favorite, nil, checked = (@filter.favorite)%>
     <%=hidden_field_tag :user, @user.id%><br>
     <%=submit_tag "Filter"%>
 <%end%>
-<%=(button_to  "Unfilter", user_path(@user), method: "get") if @show_unfilter%>
+<%=(button_to  "Unfilter", user_path(@user), method: "get") unless @filter.hide_unfilter%>
 
 <ul>
     <% @shows.each do |s| %>
@@ -26,5 +26,7 @@
 <%= button_to "Add a new Show", new_user_concert_path, method: 'get' %>
 
 <footer>
+    <%= button_to "Edit User", edit_user_path, method: 'get' %>
     <%= button_to  "Delete Account", user_path(@user), method: 'delete' %>
+    <%= button_to  "Log Out", logout_path, method: 'delete' %>
 </footer>
