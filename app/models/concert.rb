@@ -4,8 +4,13 @@ class Concert < ApplicationRecord
     has_many :performances
     has_many :bands, through: :performances
 
+    validates :date_and_time, presence: true
+    validates :location, presence: true
+    validates :name, presence: true
+
     def num_headliners
-        performances.where(opener: false).length
+        # performances.where(opener: !true).length
+        performances.length
     end
 
     def headliners
