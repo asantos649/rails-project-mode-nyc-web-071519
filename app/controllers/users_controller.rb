@@ -1,16 +1,24 @@
 class UsersController < ApplicationController
-    before_action :find_user, only: [:show, :edit, :update, :destroy, :authorize_user]
-    before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy]
+    before_action :find_user, only: [:edit, :update, :destroy, :authorize_user]
+    before_action :authorize_user, only: [:edit, :update, :destroy]
 
     def show
+        @user = User.find(params[:id])
         @filter = Filter.new({})
         @shows = UserConcert.where(user_id: @user.id)
+        if @user.id == session[:user]
+            render "users/show.html.erb"
+        else
+            render "users/public_show.html.erb"
+        end
     end
 
-    def public_show
-        @filter = Filter.new({})
-        @shows = UserConcert.where(user_id: @user.id)
-    end
+    # def public_show
+    #     @filter = Filter.new({})
+    #     @other_user = @user
+    #     @other_filter = @filter
+    #     @shows = UserConcert.where(user_id: @other_user.id)
+    # end
 
     def new
         @user = User.new
@@ -58,10 +66,17 @@ class UsersController < ApplicationController
     end
 
     def filter
+       # byebug
        @shows = UserConcert.filter_list(params[:user], params)
        @user = User.find(params[:user])
        @filter = create_filter(params)
-       render "users/show.html.erb"
+    #    @other_user = @user
+    #    @other_filter = @filter
+       if @user.id == session[:user]
+            render "users/show.html.erb"
+       else
+            render "users/public_show.html.erb"
+        end
     end
 
     def create_filter (params_hash)
@@ -83,11 +98,15 @@ class UsersController < ApplicationController
     end
 
     def authorize_user
-        # make sure the title of the public show page matches the name of the user you're seeing
-        @user = User.find(params[:id])
-        @filter = Filter.new({})
-        @shows = UserConcert.where(user_id: @user.id)
-        byebug
-        render "users/public_show.html.erb" unless @user == current_user
+        # # make sure the title of the public show page matches the name of the user you're seeing
+        # @user = User.find(params[:id])
+        # @filter = Filter.new({})
+        # @shows = UserConcert.where(user_id: @user.id)
+        # @other_user = @user
+        # @other_filter = @filter
+        # # @other_shows = @shows
+        # # byebug
+        # render "users/public_show.html.erb" unless @user == current_user
+        redirect_to user_path(@user) unless @user.id == session[:user]
     end
 end

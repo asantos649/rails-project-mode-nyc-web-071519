@@ -29,4 +29,4 @@
 </table>
 </p>
 
-<%= button_to "Edit Music Memo", edit_user_concert_path(@user_concert), method: "get" %>
+<%= button_to "Edit Music Memo", edit_user_concert_path(@user_concert), method: "get" if @user_concert.user_id == session[:user] %>

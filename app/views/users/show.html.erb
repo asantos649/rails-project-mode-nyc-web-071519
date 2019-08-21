@@ -1,3 +1,4 @@
+
 <h1><%= @user.name %></h1>
 
 
@@ -26,7 +27,7 @@
 <%= button_to "Add a new Show", new_user_concert_path, method: 'get' %>
 
 <footer>
-    <%= button_to "Edit User", edit_user_path, method: 'get' %>
+    <%= button_to "Edit User", edit_user_path(@user), method: 'get' %>
     <%= button_to  "Delete Account", user_path(@user), method: 'delete' %>
     <%= button_to  "Log Out", logout_path, method: 'delete' %>
 </footer>
