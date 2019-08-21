@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+    layout false
     skip_before_action :authorized, except: :destroy
     helper_method :user
     # helper_method :validate

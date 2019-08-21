@@ -7,9 +7,24 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
   </head>
 
   <body>
+  <div class="ui menu">
+  <div class="header item">
+    Our Company
+  </div>
+  <a class="item">
+    About Us
+  </a>
+  <a class="item">
+    Jobs
+  </a>
+  <a class="item">
+    Locations
+  </a>
+</div>
     <%= yield %>
   </body>
 </html>
