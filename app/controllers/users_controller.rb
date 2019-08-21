@@ -112,4 +112,9 @@ class UsersController < ApplicationController
         # render "users/public_show.html.erb" unless @user == current_user
         redirect_to user_path(@user) unless @user.id == session[:user]
     end
+
+    def search
+        @user = User.find_by(email: params[:email])
+        redirect_to user_path(@user)
+    end
 end

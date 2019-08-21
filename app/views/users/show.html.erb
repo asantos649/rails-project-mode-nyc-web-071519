@@ -1,6 +1,11 @@
 
 <h1><%= @user.name %></h1>
 
+<%= form_tag(search_user_path, method: "post") do %>
+  <p>Search User by Email:
+  <%= text_field_tag :email %>
+  <%= submit_tag 'Search', name: nil %></p>
+<% end %>
 
 <%= form_tag filter_path, method: "get" do%>
     <%=label_tag :band%>
