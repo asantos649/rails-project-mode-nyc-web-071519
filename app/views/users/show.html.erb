@@ -1,33 +1,51 @@
 
 <h1><%= @user.name %></h1>
 
-<%= form_tag(search_user_path, method: "post") do %>
+<%
+=begin%>
+ <%= form_tag(search_user_path, method: "post") do %>
   <p>Search User by Email:
   <%= text_field_tag :email %>
   <%= submit_tag 'Search', name: nil %></p>
-<% end %>
+<% end %> 
+<%
+=end%>
 
-<%= form_tag filter_path, method: "get" do%>
-    <%=label_tag :band%>
-    <%=text_field_tag :band, @filter.band%>
-    <%=label_tag :location%>
-    <%=text_field_tag :location, @filter.location%>
-    <%=label_tag :date%>
-    <%=date_field_tag :date, @filter.date%>
-    <%=label_tag :rating%>
-    <%=number_field_tag :rating, @filter.rating%>
-    <%=label_tag :favorite%>
-    <%=check_box_tag :favorite, nil, checked = (@filter.favorite)%>
-    <%=hidden_field_tag :user, @user.id%><br>
-    <%=submit_tag "Filter"%>
+<%= form_tag filter_path, method: "get", class: "ui form" do%>
+    <div class="five fields">
+      <div class="field">
+      <%=label_tag :band%>
+      <%=text_field_tag :band, @filter.band%>
+      </div>
+      <div class="field">
+      <%=label_tag :location%>
+      <%=text_field_tag :location, @filter.location%>
+      </div>
+      <div class="field">
+      <%=label_tag :date%>
+      <%=date_field_tag :date, @filter.date%>
+      </div>
+      <span class="field">
+      <%=label_tag :rating%>
+      <%=number_field_tag :rating, @filter.rating%>
+      </span>
+      <span class="field">
+      <%=label_tag :favorite%>
+      <%=check_box_tag :favorite, nil, checked = (@filter.favorite), class: "largerCheckbox"%>
+      </span>
+      <%=hidden_field_tag :user, @user.id%><br>
+    <%=submit_tag "Filter", class: "ui button", style: "margin-top:20px; width:101px;"%>
+    </div>
 <%end%>
-<%=(button_to  "Unfilter", user_path(@user), method: "get") unless @filter.hide_unfilter%>
-
-<ul>
+<%=(button_to  "Unfilter", user_path(@user), method: "get", class: "ui button", style:"float:right; width:88px;") unless @filter.hide_unfilter%>
+<%unless @filter.hide_unfilter%>
+  <br> 
+<%end%>
+<div class="ui link list">
     <% @shows.each do |s| %>
-    <li><%= link_to s.concert.display, user_concert_path(s)%></li>
+    <br><%= link_to s.concert.display, user_concert_path(s), class: "item"%>
     <% end %>
-</ul>
+</div>
 
 <%= button_to "Add a new Show", new_user_concert_path, method: 'get' %>
 

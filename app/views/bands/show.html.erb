@@ -1,7 +1,7 @@
 <h1><%= @band.name.titleize %></h1>
 
-<ul>
+<div class="ui link list">
 <% @band.concerts.each do |concert| %>
-<li><%= link_to concert.name, concert_path(concert) %></li>
+<li><%= link_to concert.display, concert_path(concert), class: "item"%></li>
 <% end %>
-</ul>
+</div>

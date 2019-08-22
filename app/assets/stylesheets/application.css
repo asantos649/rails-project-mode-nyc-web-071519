@@ -27,5 +27,34 @@ body {
 }
 
 h1{
-    text-align: center 
+    text-align: center; 
+    font-size: 4rem;
+}
+
+.ui.link.list .item,
+.ui.link.list a.item,
+.ui.link.list .item a:not(.ui) {
+  color: grey;
+  -webkit-transition: 0.1s color ease;
+  transition: 0.1s color ease;
+}
+
+.ui.link.list.list a.item:hover,
+.ui.link.list.list .item a:not(.ui):hover {
+  color: white;
+}
+
+.ui.list {
+    font-size: 1.5rem;
+}
+
+.ui.form .field > label{
+    color: white;
+    font-size: 1.5rem;
+}
+
+.ui.button{
+    height: 2.75em;
+    background-color: crimson;
+    color: white;
 }

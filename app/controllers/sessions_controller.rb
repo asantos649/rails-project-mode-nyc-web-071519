@@ -1,11 +1,14 @@
 class SessionsController < ApplicationController
-    layout false
+#   layout false
+#   layout 'application', :except => :login
+
     skip_before_action :authorized, except: :destroy
     helper_method :user
     # helper_method :validate
 
     def login
-        render "/login.html.erb"
+        
+        render "/login.html.erb"#, :layout => false
     end
 
     def verification
