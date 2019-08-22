@@ -2,6 +2,6 @@
 
 <div class="ui link list">
 <% @band.concerts.each do |concert| %>
-<li><%= link_to concert.display, concert_path(concert), class: "item"%></li>
+  <%= link_to concert.display, concert_path(concert), class: "item"%><br>
 <% end %>
 </div>

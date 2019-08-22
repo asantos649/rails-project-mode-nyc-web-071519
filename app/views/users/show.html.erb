@@ -47,10 +47,11 @@
     <% end %>
 </div>
 
-<%= button_to "Add a new Show", new_user_concert_path, method: 'get' %>
+<%= button_to "Add Show", new_user_concert_path, method: 'get', class: "ui button", style: "position:relative; left:45%;"%>
 
 <footer>
-    <%= button_to "Edit User", edit_user_path(@user), method: 'get' %>
-    <%= button_to  "Delete Account", user_path(@user), method: 'delete' %>
-    <%= button_to  "Log Out", logout_path, method: 'delete' %>
+  <span style="position:absolute; bottom:5%;">
+    <%= button_to "Edit User", edit_user_path(@user), method: 'get', class: "ui button"%>
+    <%= button_to  "Delete Account", user_path(@user), method: 'delete', class: "ui button", style: "margin-top:10px;"%>
+  </span>
 </footer>
