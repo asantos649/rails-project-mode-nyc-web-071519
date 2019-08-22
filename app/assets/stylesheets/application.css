@@ -14,3 +14,18 @@
  *= require_self
  */
 @import "semantic-ui";
+
+
+
+body {
+    color: white;
+    background-color: black;
+}
+
+.ui.menu {
+    background-color: crimson
+}
+
+h1{
+    text-align: center 
+}

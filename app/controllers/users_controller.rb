@@ -115,6 +115,10 @@ class UsersController < ApplicationController
 
     def search
         @user = User.find_by(email: params[:email])
-        redirect_to user_path(@user)
+        @user ? (redirect_to user_path(@user)) : (redirect_to invalid_user_path)
+    end
+
+    def invalid
+
     end
 end

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   delete '/logout', to: "sessions#destroy", as: "logout"
   get '/', to: "sessions#login"
   post '/search', to: "users#search", as: "search_user"
+  get '/invalid', to: "users#invalid", as: "invalid_user"
   
   resources :user_concerts, except: :index
   resources :bands, only: [:index, :show]

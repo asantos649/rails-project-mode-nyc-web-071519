@@ -5,25 +5,39 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
+    
+
+    
   </head>
 
   <body>
-  <div class="ui menu">
-  <div class="header item">
-    Our Company
+  <div class="ui menu" style="font-size:1.5rem;">
+  <div class="header item" style="font-size:2rem;">
+    Music Memos
   </div>
-  <a class="item">
-    About Us
+  <a class="item" href=<%=user_path(current_user)%>>
+    My Memos
   </a>
-  <a class="item">
-    Jobs
+  <a class="item" href=<%=concerts_path%>>
+    Concerts
   </a>
-  <a class="item">
-    Locations
+  <a class="item" href=<%=bands_path%>>
+    Bands
   </a>
+  <div class="right menu">
+    <div class="item">
+    <%= form_tag search_user_path do%>
+      <div class="ui icon input">
+        <input type="text" placeholder="Search email address..." name = 'email' id = 'email'>
+        <i class="search link icon"> </i>
+      </div>
+      <%end %>
+    </div>
+    <%= link_to 'logout', logout_path, {method: "delete", class: "ui item"} %>
+  </div>
 </div>
     <%= yield %>
   </body>
