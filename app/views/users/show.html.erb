@@ -1,5 +1,5 @@
 
-<h1><%= @user.name %></h1>
+<h1>Hi <%= @user.name %>!</h1>
 
 <%
 =begin%>
@@ -47,10 +47,10 @@
     <% end %>
 </div>
 
-<%= button_to "Add Show", new_user_concert_path, method: 'get', class: "ui button", style: "position:relative; left:45%;"%>
+<%= button_to "Add Music Memo", new_user_concert_path, method: 'get', class: "ui button", style: "position:relative; left:43%;"%>
 
 <footer>
-  <span style="position:absolute; bottom:5%;">
+  <span style="position:absolute; bottom:3%;">
     <%= button_to "Edit User", edit_user_path(@user), method: 'get', class: "ui button"%>
     <%= button_to  "Delete Account", user_path(@user), method: 'delete', class: "ui button", style: "margin-top:10px;"%>
   </span>

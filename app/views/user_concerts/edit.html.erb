@@ -6,7 +6,9 @@
   <% end %>
 <% end %>
 
-<%= form_for @user_concert, url: {action: "update"} do |f| %>
+<%
+=begin%>
+ <%= form_for @user_concert, url: {action: "update"} do |f| %>
   <%= f.collection_select :concert_id, @concerts, :id, :display %><br>
   <%= f.label :rating %>
   <%= f.number_field :rating %><br>
@@ -15,6 +17,28 @@
   <%= f.label :favorite %>
   <%= f.check_box :favorite %><br>
   <%= f.submit "Edit Music Memo" %>
+<% end %> 
+<%
+=end%>
+
+<%= form_for @user_concert, url: {action: "update"}, :html => {:class => 'ui form'} do |f| %>
+  <div class = "field">
+    <%= f.collection_select :concert_id, @concerts, :id, :display, {class:"item"} %><br>
+  </div>
+  <div class = "field">
+    <%= f.label :rating %>
+    <%= f.number_field :rating %><br>
+  </div>
+  <div class = "field">
+    <%= f.label :favorite_song %>
+    <%= f.text_field :favorite_song %><br>
+  </div>
+  <div class = "field">
+    <%= f.label :favorite %>
+    <%= f.check_box :favorite, class: "largerCheckbox"%><br>
+  </div>
+  <%= f.submit "Edit Music Memo", class:"ui button" %>
 <% end %>
 
-<%= button_to "Delete Music Memo", user_concert_path(@user_concert), method: "delete" %>
+<%= button_to "Delete Music Memo", user_concert_path(@user_concert), method: "delete", class: "ui button", style: "margin-top:10px;" %>
+<%= button_to "Back", user_concert_path(@user_concert), method: "get", class:"ui button", style: "margin-top:10px;" %>

@@ -38,7 +38,11 @@
     <%= form_tag search_user_path do%>
       <div class="ui icon input">
         <input type="text" placeholder="Search email address..." name = 'email' id = 'email'>
-        <i class="search link icon"> </i>
+        <%
+=begin%>
+ <i class="search link icon"> </i> 
+<%
+=end%>
       </div>
       <%end %>
     </div>
@@ -46,6 +50,8 @@
   </div>
   <%end%>
 </div>
+<div class = "content">
     <%= yield %>
+    </div>
   </body>
 </html>

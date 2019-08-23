@@ -33,7 +33,7 @@ class UserConcertsController < ApplicationController
         temp_user_concert = UserConcert.new(user_concert_params)
         if temp_user_concert.valid?
             @user_concert.update(user_concert_params)
-            redirect_to user_path(session[:user])
+            redirect_to user_concert_path(@user_concert)
         else
             flash[:errors] = temp_user_concert.errors.full_messages
             redirect_to edit_user_concert_path(@user_concert)
