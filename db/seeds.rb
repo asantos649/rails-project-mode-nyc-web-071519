@@ -34,7 +34,7 @@ Concert.destroy_all
 # performance4 = Performance.create(band: band3, concert: concert2, opener: false)
 # performance5 = Performance.create(band: band1, concert: concert3, opener: false)
 
-params = {size: 86, source: 'ticketmaster', classificationName: 'music'}
+params = {size: 200, source: 'ticketmaster', classificationName: 'music'}
 client = Ticketmaster.client(apikey: ENV['APIKEY'])
 response = client.search_events(params: params)
 events = response.results
@@ -42,9 +42,10 @@ events = response.results
 # check if concert exists, if not create it in db
 if events
 events.each do |event|
-    if event.venues[0] && event.dates["start"] && event.dates["start"]["dateTime"] && event.venues[0].state["stateCode"] && !!event.venues[0].state && !!event.venues[0].country && event.name && event.venues && event.venues[0].city && event.dates
+    # if event.venues[0] && event.dates["start"] && event.dates["start"]["dateTime"] && event.venues[0].state["stateCode"] && !!event.venues[0].state && !!event.venues[0].country && event.name && event.venues && event.venues[0].city && event.dates
+    if !!event.dates && !!event.dates["start"] && !!event.venues && !!event.venues[0] && !!event.venues[0].state
         concert_params = {name: event.name, date_and_time: event.dates["start"]["dateTime"], location: "#{event.venues[0].city}, #{event.venues[0].state["stateCode"]} #{event.venues[0].country}"}
-    Concert.find_by(concert_params) ? (concert = Concert.find_by(concert_params)) : (concert = Concert.create(concert_params))
+        Concert.find_by(concert_params) ? (concert = Concert.find_by(concert_params)) : (concert = Concert.create(concert_params))
     end
     attractions = event.attractions
     attractions.each do |attraction|
